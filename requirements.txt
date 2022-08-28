@@ -6,5 +6,6 @@ python-multipart
 opencv-python-headless
 flask
 gunicorn
+uvicorn
 numpy
 joblib
