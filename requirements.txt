@@ -5,6 +5,7 @@ python-multipart
 opencv-python
 flask
 certifi==2019.11.28
+MarkupSafe==2.0.1
 Click==7.0
 gunicorn==19.9.0
 Jinja2==2.10.1
