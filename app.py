@@ -89,15 +89,15 @@ model.load_weights('model.h5')
 # resnet = pickle.load(open('resnet_model.pkl', 'rb'))
 resnet = ResNet50(include_top=True,weights='imagenet',input_shape=(224, 224,3),pooling="avg")
 resnet1 = Model(resnet.input, resnet.layers[-2].output)    
-application = Flask(__name__)
-application.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
+app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 
 
-@application.route('/')
+@app.route('/')
 def index():
     return render_template('index.html')
 
-@application.route('/after', methods=['GET', 'POST'])
+@app.route('/after', methods=['GET', 'POST'])
 def after():
     global model, resnet, vocab, inv_vocab
     f = request.files['file1'].read()
@@ -130,4 +130,4 @@ def after():
     return render_template('after.html', data=final,img_data=uri)
 
 if __name__ == "__main__":
-    application.run(debug=True,port=5000)
+    app.run(debug=True)
