@@ -15,3 +15,22 @@ RUN pip install -r requirements.txt
 # For environments with multiple CPU cores, increase the number of workers
 # to be equal to the cores available.
 CMD exec gunicorn --bind :$PORT --workers 1 --worker-class uvicorn.workers.UvicornWorker  --threads 8 main:app
+
+FROM python:3.7
+
+RUN pip install virtualenv
+ENV VIRTUAL_ENV=/venv
+RUN virtualenv venv -p python3
+ENV PATH="VIRTUAL_ENV/bin:$PATH"
+
+WORKDIR /app
+ADD . /app
+
+# install dependencies
+RUN pip install -r requirements.txt
+
+# expose port
+EXPOSE 5000
+
+# run application
+CMD ["python", "app.py"]
