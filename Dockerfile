@@ -12,6 +12,7 @@ EXPOSE 5000
 
 # Install production dependencies.
 RUN python3 -m pip install --upgrade pip
+RUN pip3 install "uvicorn[standard]" gunicorn
 # Install production dependencies.
 RUN pip3 install -r requirements.txt
 
