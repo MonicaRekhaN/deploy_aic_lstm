@@ -97,20 +97,21 @@ def after():
     uri = "data:%s;base64,%s"%(mime, img_base64)
 
     
-    image = encode(buf).reshape((1,2048))
+#     image = encode(buf).reshape((1,2048))
     in_text = 'startseq'
     for i in range(max_length):
-        sequence = [wordtoix[w] for w in in_text.split() if w in wordtoix]
-        sequence = pad_sequences([sequence], maxlen=max_length)
-        yhat = model.predict([image,sequence], verbose=0)
-        yhat = np.argmax(yhat)
-        word = ixtoword[yhat]
-        in_text += ' ' + word
-        if word == 'endseq':
-            break
-    final = in_text.split()
-    final = final[1:-1]
-    final = ' '.join(final)
+#         sequence = [wordtoix[w] for w in in_text.split() if w in wordtoix]
+#         sequence = pad_sequences([sequence], maxlen=max_length)
+#         yhat = model.predict([image,sequence], verbose=0)
+#         yhat = np.argmax(yhat)
+#         word = ixtoword[yhat]
+#         in_text += ' ' + word
+#         if word == 'endseq':
+#             break
+#     final = in_text.split()
+#     final = final[1:-1]
+#     final = ' '.join(final)
+    final="result"
     return render_template('after.html', data=final,img_data=uri)
 
 if __name__ == "__main__":
