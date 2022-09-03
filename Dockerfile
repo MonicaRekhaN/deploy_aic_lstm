@@ -20,7 +20,8 @@ RUN pip3 install -r requirements.txt
 # webserver, with one worker process and 8 threads.
 # For environments with multiple CPU cores, increase the number of workers
 # to be equal to the cores available.
-CMD exec gunicorn --bind :$PORT main:app --workers 1 --timeout 1200 --preload
+# CMD exec gunicorn --bind :$PORT main:app --workers 1 --timeout 1200 --preload
+CMD exec gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:80 --timeout 1200 
 
 # FROM python:3.9
 
